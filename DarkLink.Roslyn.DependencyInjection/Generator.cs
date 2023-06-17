@@ -38,11 +38,17 @@ public class Generator : IIncrementalGenerator
         var encoding = new UTF8Encoding(false);
         var stringWriter = new StringWriter();
 
+        if (!serviceInjection.ServiceType.ContainingNamespace.IsGlobalNamespace)
+            stringWriter.WriteLine($"namespace {serviceInjection.ServiceType.ContainingNamespace} {{");
+
         stringWriter.WriteLine($"partial class {serviceInjection.ServiceType.Name} {{");
         stringWriter.WriteLine($"public {serviceInjection.ServiceType.Name}({string.Join(", ", serviceInjection.Fields.Select(f => $"{f.Field.Type} {f.Field.Name}"))}) {{");
         foreach (var field in serviceInjection.Fields) stringWriter.WriteLine($"this.{field.Field.Name} = {field.Field.Name};");
         stringWriter.WriteLine("}");
         stringWriter.WriteLine("}");
+
+        if (!serviceInjection.ServiceType.ContainingNamespace.IsGlobalNamespace)
+            stringWriter.WriteLine("}");
 
         var code = SourceText.From(stringWriter.ToString(), encoding);
         context.AddSource($"{serviceInjection.ServiceType.Name}.g.cs", code);
