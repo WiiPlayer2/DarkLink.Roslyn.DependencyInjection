@@ -1,21 +1,20 @@
 ﻿using System;
 using Microsoft.CodeAnalysis;
 
-namespace DarkLink.Roslyn.DependencyInjection
+namespace DarkLink.Roslyn.DependencyInjection;
+
+[Generator]
+public class Generator : IIncrementalGenerator
 {
-    [Generator]
-    public class Generator : IIncrementalGenerator
+    public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        public void Initialize(IncrementalGeneratorInitializationContext context)
-        {
-            context.RegisterPostInitializationOutput(PostInitialize);
+        context.RegisterPostInitializationOutput(PostInitialize);
 
-            // Initialize
-        }
+        // Initialize
+    }
 
-        private void PostInitialize(IncrementalGeneratorPostInitializationContext context)
-        {
-            // Generate immutable code
-        }
+    private void PostInitialize(IncrementalGeneratorPostInitializationContext context)
+    {
+        InjectAttribute.AddTo(context);
     }
 }
