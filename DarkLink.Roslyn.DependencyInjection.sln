@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkLink.Roslyn.DependencyInjection", "DarkLink.Roslyn.DependencyInjection\DarkLink.Roslyn.DependencyInjection.csproj", "{8DB87EC9-3976-480E-B34C-6A1049883783}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkLink.Roslyn.DependencyInjection.Test", "DarkLink.Roslyn.DependencyInjection.Test\DarkLink.Roslyn.DependencyInjection.Test.csproj", "{1A8047B1-7DDC-411A-BF34-133E23802F38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DB87EC9-3976-480E-B34C-6A1049883783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DB87EC9-3976-480E-B34C-6A1049883783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DB87EC9-3976-480E-B34C-6A1049883783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DB87EC9-3976-480E-B34C-6A1049883783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A8047B1-7DDC-411A-BF34-133E23802F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A8047B1-7DDC-411A-BF34-133E23802F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A8047B1-7DDC-411A-BF34-133E23802F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A8047B1-7DDC-411A-BF34-133E23802F38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4ECDF319-6821-48CA-8A91-C5976D977766}
+	EndGlobalSection
+EndGlobal
