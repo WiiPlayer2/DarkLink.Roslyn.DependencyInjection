@@ -1,0 +1,4 @@
+- Nuget:
+    Project: ./DarkLink.Roslyn.DependencyInjection.sln
+    VersionSuffix: $TIMESTAMP
+    SourceCredentials: private-nuget-repo
