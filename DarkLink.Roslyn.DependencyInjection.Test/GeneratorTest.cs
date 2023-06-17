@@ -55,4 +55,27 @@ public static class Code
 
         await Verify(source);
     }
+
+    [TestMethod]
+    public async Task ServiceInNamespace()
+    {
+        var source = @"
+using DarkLink.Roslyn.DependencyInjection;
+
+namespace Services;
+
+public partial class Service
+{
+    [Inject]
+    private readonly string injectedString;
+}
+
+public static class Code
+{
+    public static void Do() => new Service(""test"");
+}
+";
+
+        await Verify(source);
+    }
 }
