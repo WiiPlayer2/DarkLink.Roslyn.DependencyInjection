@@ -41,7 +41,7 @@ public class Generator : IIncrementalGenerator
         if (!serviceInjection.ServiceType.ContainingNamespace.IsGlobalNamespace)
             stringWriter.WriteLine($"namespace {serviceInjection.ServiceType.ContainingNamespace} {{");
 
-        stringWriter.WriteLine($"partial class {serviceInjection.ServiceType.Name} {{");
+        stringWriter.WriteLine($"partial class {GetPartialTypeName(serviceInjection.ServiceType)} {{");
         stringWriter.WriteLine($"public {serviceInjection.ServiceType.Name}({string.Join(", ", serviceInjection.Fields.Select(f => $"{f.Field.Type} {f.Field.Name}"))}) {{");
         foreach (var field in serviceInjection.Fields) stringWriter.WriteLine($"this.{field.Field.Name} = {field.Field.Name};");
         stringWriter.WriteLine("}");
@@ -52,6 +52,11 @@ public class Generator : IIncrementalGenerator
 
         var code = SourceText.From(stringWriter.ToString(), encoding);
         context.AddSource($"{serviceInjection.ServiceType.Name}.g.cs", code);
+
+        static string GetPartialTypeName(INamedTypeSymbol typeSymbol)
+            => typeSymbol.ContainingNamespace.IsGlobalNamespace
+                ? typeSymbol.ToString()
+                : typeSymbol.ToString().Substring(typeSymbol.ContainingNamespace.ToString().Length + 1);
     }
 
     private void PostInitialize(IncrementalGeneratorPostInitializationContext context)

@@ -12,6 +12,29 @@ public class GeneratorTest : VerifySourceGenerator
     }
 
     [TestMethod]
+    public async Task GenericService()
+    {
+        var source = @"
+using DarkLink.Roslyn.DependencyInjection;
+
+namespace Services;
+
+public partial class Service<T>
+{
+    [Inject]
+    private readonly T injectedT;
+}
+
+public static class Code
+{
+    public static void Do() => new Service<string>(""test"");
+}
+";
+
+        await Verify(source);
+    }
+
+    [TestMethod]
     public async Task MultipleFields()
     {
         var source = @"
@@ -36,10 +59,12 @@ public static class Code
     }
 
     [TestMethod]
-    public async Task SingleField()
+    public async Task ServiceInNamespace()
     {
         var source = @"
 using DarkLink.Roslyn.DependencyInjection;
+
+namespace Services;
 
 public partial class Service
 {
@@ -57,12 +82,10 @@ public static class Code
     }
 
     [TestMethod]
-    public async Task ServiceInNamespace()
+    public async Task SingleField()
     {
         var source = @"
 using DarkLink.Roslyn.DependencyInjection;
-
-namespace Services;
 
 public partial class Service
 {
